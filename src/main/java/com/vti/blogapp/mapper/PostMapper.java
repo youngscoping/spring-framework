@@ -3,6 +3,7 @@ package com.vti.blogapp.mapper;
 import com.vti.blogapp.dto.PostDto;
 import com.vti.blogapp.entity.Post;
 import com.vti.blogapp.form.PostCreateForm;
+import com.vti.blogapp.form.PostUpdateForm;
 
 public class PostMapper {
     public static Post map(PostCreateForm form) {
@@ -23,5 +24,11 @@ public class PostMapper {
         dto.setUpdateAt(post.getUpdateAt());
         return dto;
 
+    }
+
+    public static void map(PostUpdateForm form, Post post) {
+        post.setTitle(form.getTitle());
+        post.setContent(form.getContent());
+        post.setDescription(form.getDescription());
     }
 }

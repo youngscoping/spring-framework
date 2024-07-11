@@ -20,11 +20,11 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public List<PostDto> findAll() {
-        var post = postRepository.findAll();
+        var posts = postRepository.findAll();
         var dtos = new ArrayList<PostDto>();
         for (Post post : posts) {
             var dto = PostMapper.map(post);
-            dto.add(dto);
+            dtos.add(dto);
         }
         return dtos;
     }
@@ -42,8 +42,15 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public PostDto update(PostUpdateForm form) {
-        return null;
+    public PostDto update(Long id,PostUpdateForm form) {
+       var optional = postRepository.findById(id);
+       if (optional.isEmpty()) {
+           return null;
+       }
+       var post = optional.get();
+       PostMapper.map(form, post);
+       var savedPost = postRepository.save(post);
+       return PostMapper.map(savedPost);
     }
 
     @Override

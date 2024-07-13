@@ -4,11 +4,13 @@ import com.vti.blogapp.dto.PostDto;
 import com.vti.blogapp.form.PostCreateForm;
 import com.vti.blogapp.form.PostUpdateForm;
 import com.vti.blogapp.service.PostService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 public class PostController {
     private PostService postService;
 

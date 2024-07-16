@@ -1,9 +1,10 @@
-package com.vti.blogapp.mapper;
+package com.vti.blogapp.service;
 
 import com.vti.blogapp.dto.CommentDto;
 import com.vti.blogapp.entity.Comment;
 import com.vti.blogapp.form.CommentCreateForm;
 import com.vti.blogapp.form.CommentUpdateForm;
+import com.vti.blogapp.mapper.CommentMapper;
 import com.vti.blogapp.repository.CommentRepository;
 import com.vti.blogapp.repository.PostRepository;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class CommentServiceImpl implements CommentService{
+public class CommentServiceImpl implements CommentService {
 
     private CommentRepository commentRepository;
     private PostRepository postRepository;

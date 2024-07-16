@@ -18,7 +18,7 @@ public class DepartmentMapper {
         dto.setId(department.getId());
         dto.setName(department.getName());
         dto.setCreatedAt(department.getCreatedAt());
-        dto.setUpdateAt(department.getCreatedAt());
+        dto.setUpdateAt(department.getUpdateAt());
         return dto;
     }
 

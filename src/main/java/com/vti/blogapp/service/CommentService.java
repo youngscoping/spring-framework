@@ -1,4 +1,4 @@
-package com.vti.blogapp.mapper;
+package com.vti.blogapp.service;
 
 import com.vti.blogapp.dto.CommentDto;
 import com.vti.blogapp.form.CommentCreateForm;

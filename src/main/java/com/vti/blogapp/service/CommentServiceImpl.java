@@ -7,7 +7,10 @@ import com.vti.blogapp.form.CommentUpdateForm;
 import com.vti.blogapp.mapper.CommentMapper;
 import com.vti.blogapp.repository.CommentRepository;
 import com.vti.blogapp.repository.PostRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,19 +26,13 @@ public class CommentServiceImpl implements CommentService {
 
 
     @Override
-    public List<CommentDto> findAll() {
-        var comments = commentRepository.findAll();
-        var dtos = new ArrayList<CommentDto>();
-        for (Comment comment : comments) {
-            var dto = CommentMapper.map(comment);
-            dtos.add(dto);
-        }
-        return dtos;
+    public Page<CommentDto> findAll(Pageable pageable) {
+        return commentRepository.findAll(pageable).map(CommentMapper::map);
     }
 
     @Override
-    public List<CommentDto> findByPostId() {
-        return List.of();
+    public Page<CommentDto> findByPostId(Long postId, Pageable pageable) {
+        return commentRepository.findByPostId(postId, pageable).map(CommentMapper::map);
     }
 
     @Override
@@ -71,4 +68,11 @@ public class CommentServiceImpl implements CommentService {
     public void deleteById(Long id) {
         commentRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional
+    public void deleteByEmail(String email) {
+        commentRepository.deleteByEmail(email);
+    }
+
 }

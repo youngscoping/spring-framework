@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface CommentRepository  extends JpaRepository<Comment, Long> {
+public interface CommentRepository  extends JpaRepository<Comment, String> {
     //1. Method name
     //tiền tố: findBy, ExistsBy, countBy, deleteBy
     // VD: lấy ra tất cả comment theo name
@@ -33,7 +33,6 @@ public interface CommentRepository  extends JpaRepository<Comment, Long> {
     @Query("DELETE FROM Comment WHERE name = ?1 AND email = ?2")
     void deleteByName(String name, String email);
 
-    @Query(value = "SELECT * FORM comment WHERE id >?1", nativeQuery = true)
-    Page<CommentDto> findByGreaterThan(Long id, Pageable pageable) ;
+
 
 }

@@ -43,7 +43,7 @@ public class Post {
     @UpdateTimestamp
     private LocalDateTime updateAt;
 
-    @OneToMany(mappedBy = "post")
+    @ManyToMany(mappedBy = "posts")
     private List<Comment> comments;
 
     public enum Status {

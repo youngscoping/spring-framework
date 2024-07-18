@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -32,7 +33,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Page<CommentDto> findByPostId(Long postId, Pageable pageable) {
-        return commentRepository.findByPostId(postId, pageable).map(CommentMapper::map);
+     //   return commentRepository.findByPostId(postId, pageable).map(CommentMapper::map);
+        return Page.empty();
     }
 
     @Override
@@ -48,7 +50,7 @@ public class CommentServiceImpl implements CommentService {
         }
         var post = optional.get();
         var comment = CommentMapper.map(form);
-        comment.setPost(post);
+        comment.setPosts(Arrays.asList(post));
         var savedComment = commentRepository.save(comment);
         return CommentMapper.map(savedComment);
     }

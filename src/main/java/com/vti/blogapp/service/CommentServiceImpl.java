@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -36,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentDto findById(Long id) {
+    public CommentDto findById(UUID id) {
         return commentRepository.findById(id).map(CommentMapper::map).orElse(null);
     }
 
@@ -54,7 +55,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentDto update(Long id, CommentUpdateForm form) {
+    public CommentDto update(UUID id, CommentUpdateForm form) {
         var optional = commentRepository.findById(id);
         if (optional.isEmpty()) {
             return  null;
@@ -65,7 +66,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(UUID id) {
         commentRepository.deleteById(id);
     }
 

@@ -36,8 +36,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentDto findById(String id) {
-        return commentRepository.findById(id).map(CommentMapper::map).orElse(null);
+    public CommentDto findById(Comment.PrimaryKey pk) {
+        return commentRepository.findById(pk).map(CommentMapper::map).orElse(null);
     }
 
     @Override
@@ -54,8 +54,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentDto update(String id, CommentUpdateForm form) {
-        var optional = commentRepository.findById(id);
+    public CommentDto update(Comment.PrimaryKey pk, CommentUpdateForm form) {
+        var optional = commentRepository.findById(pk);
         if (optional.isEmpty()) {
             return  null;
         }
@@ -65,14 +65,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteById(String id) {
-        commentRepository.deleteById(id);
+    public void deleteById(Comment.PrimaryKey pk) {
+        commentRepository.deleteById(pk);
     }
 
     @Override
     @Transactional
     public void deleteByEmail(String email) {
-        commentRepository.deleteByEmail(email);
     }
 
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,20 +16,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name="comment")
 public class Comment {
-    @Id
-    @Column(name = "id")
-    @GenericGenerator(
-            name = "comment_id_generator", type = CommentIdGenerator.class
+    @EmbeddedId
+    private PrimaryKey pk;
 
-    )
-    @GeneratedValue(generator = "comment_id_generator")
-    private String id;
-
-    @Column(name = "name", length = 50, nullable = false)
-    private String name;
-
-    @Column(name = "email", length = 75, nullable = false)
-    private String email;
 
     @Column(name = "body" , length = 100, nullable = false)
     private String body;
@@ -45,6 +35,15 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @Getter
+    @Setter
+    @Embeddable
+    public static class PrimaryKey implements Serializable {
+        @Column(name = "name", length = 50, nullable = false)
+        private String name;
 
+        @Column(name = "email", length = 75, nullable = false)
+        private String email;
+    }
 
 }

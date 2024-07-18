@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class CommentDto {
-    private Comment.PrimaryKey pk;
+
     private String name;
     private String email;
     private String body;

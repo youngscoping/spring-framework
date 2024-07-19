@@ -36,9 +36,8 @@ public class Comment {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ManyToMany
-    @JoinTable(name = "post_comment", joinColumns = @JoinColumn(name = "comment_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
-    private List<Post> posts;
+    @OneToMany(mappedBy = "comment")
+    private List<PostComment> postComments;
 
 
 

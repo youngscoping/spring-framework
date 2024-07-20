@@ -4,12 +4,11 @@ import com.vti.blogapp.dto.PostDto;
 import com.vti.blogapp.form.PostCreateForm;
 import com.vti.blogapp.form.PostUpdateForm;
 import com.vti.blogapp.service.PostService;
+import com.vti.blogapp.form.PostFilterForm;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -17,8 +16,8 @@ public class PostController {
     private PostService postService;
 
     @GetMapping("/api/v1/posts")
-    public Page<PostDto> findAll(Pageable pageable) {
-         return postService.findAll(pageable);
+    public Page<PostDto> findAll(PostFilterForm form, Pageable pageable) {
+         return postService.findAll(form, pageable);
     }
 
     @GetMapping("/api/v1/posts/{id}")

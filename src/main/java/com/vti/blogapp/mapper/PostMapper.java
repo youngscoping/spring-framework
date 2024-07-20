@@ -24,7 +24,7 @@ public class PostMapper {
         dto.setStatus(post.getStatus());
         dto.setCreatedAt(post.getCreatedAt());
         dto.setUpdateAt(post.getUpdateAt());
-        return dto;
+        return dto.withSelfRel();
 
     }
 

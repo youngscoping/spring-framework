@@ -5,13 +5,15 @@ import com.vti.blogapp.entity.Post;
 import com.vti.blogapp.form.PostCreateForm;
 import com.vti.blogapp.form.PostUpdateForm;
 
+
+
 public class PostMapper {
     public static Post map(PostCreateForm form) {
         var post = new Post();
         post.setTitle(form.getTitle());
         post.setContent(form.getContent());
         post.setDescription(form.getDescription());
-        post.setStatus(form.getStatus());
+        post.setStatus(Post.Status.valueOf(form.getStatus()));
         return post;
     }
 
@@ -32,6 +34,6 @@ public class PostMapper {
         post.setTitle(form.getTitle());
         post.setContent(form.getContent());
         post.setDescription(form.getDescription());
-        post.setStatus(form.getStatus());
+        post.setStatus(Post.Status.valueOf(form.getStatus()));
     }
 }
